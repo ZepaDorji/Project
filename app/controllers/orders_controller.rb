@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
-
+    update_price && update_sku
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: "Order was successfully created." }
@@ -32,6 +32,18 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def update_sku
+    product = Product.find(order_params.dig(:product_id))
+    new_sku = product.sku - order_params.dig(:quantity).to_i
+    product.update(sku: new_sku)
+  end
+
+  def update_price
+    product = Product.find(order_params.dig(:product_id))
+    order_value = product.price * order_params.dig(:quantity).to_i
+    @order.update(order_value: order_value)
   end
 
   # PATCH/PUT /orders/1 or /orders/1.json
@@ -57,13 +69,21 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def order_params
-      params.require(:order).permit(:name, :cid, :contact_number, :email, :address, :product_id)
-    end
+  # Only allow a list of trusted parameters through.
+  def order_params
+    params.require(:order).permit(
+      :name, 
+      :cid,
+      :contact_number, 
+      :email, 
+      :address, 
+      :product_id, 
+      :quantity
+    )
+  end
 end

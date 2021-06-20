@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  get 'users/index'
   resources :orders
   resources :products
   resources :categories
