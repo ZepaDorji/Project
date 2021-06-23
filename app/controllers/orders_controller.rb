@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
-    update_price && update_sku
+    update_price
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: "Order was successfully created." }
@@ -34,11 +34,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def update_sku
-    product = Product.find(order_params.dig(:product_id))
-    new_sku = product.sku - order_params.dig(:quantity).to_i
-    product.update(sku: new_sku)
-  end
+  
 
   def update_price
     product = Product.find(order_params.dig(:product_id))
