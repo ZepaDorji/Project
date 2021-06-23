@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <strong>Name:</strong>
@@ -27,8 +27,9 @@
 
 <p>
   <strong>Product:</strong>
-  <%= @order.product_id %>
+  <%= @order.product.name %>
 </p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
+<!-- <%= link_to 'Edit', edit_order_path(@order) %> |-->
+
 <%= link_to 'Back', orders_path %>
