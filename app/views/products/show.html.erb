@@ -10,6 +10,15 @@
 </p>
 
 <p>
+  <div>
+    <%(0...@product.images.count).each do |image|%>
+    <div style="width:300px;height:300px;">
+    <%= image_tag(@product.images[image], style:'width:100%;height:auto')%>
+  </div>
+  <%end%>
+</p>
+
+<p>
   <strong>Sku:</strong>
   <%= @product.sku %>
 </p>
@@ -21,12 +30,13 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @product.category_id %>
+  <%= @product.category.name %>
 </p>
+
 <% if current_user && current_user.admin %>
     <%= link_to 'Edit', edit_product_path(@product) %> |
     <%= link_to 'Back', products_path %>
 <% else %>
     <%= link_to 'Back', products_path %>
     <%= link_to 'Place Order', orders_path %>
-<%end%>
+<% end %>

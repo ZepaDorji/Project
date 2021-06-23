@@ -12,20 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :Product_name %>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true %>
   </div>
+
 
   <div class="field">
-    <%= form.label :sku %>
-    <%= form.number_field :sku %>
+    <%= form.label :Product_price %>
+    <%= form.text_field :price %>
   </div>
-
+  
   <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description %>
