@@ -3,16 +3,19 @@
     <%= link_to 'post product', products_path %>
     <%= link_to 'Orders', orders_path %>
     <%= link_to 'category',new_category_path%>
+    <%= link_to 'Edit', edit_user_registration_path%>
     <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
     <%# <%= link_to 'Add user', new_user_registration_path%>
     
+    
 <%elsif current_user %>
     <%= link_to 'View Products', products_path %>
-    <%= link_to 'Place Order', orders_path %>
+    <%= link_to 'Place Order', new_order_path %>
+    <%= link_to 'Edit', edit_user_registration_path%>
     <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
 <%else%>
     <%= link_to 'Sign Up', new_user_registration_path%>
     <%= link_to 'Sign In', new_user_session_path%>
     <%= link_to 'View Products', products_path %>
-    <%= link_to 'Place Order', orders_path %>
+    <%= link_to 'Place Order', new_order_path %>
 <%end%> 

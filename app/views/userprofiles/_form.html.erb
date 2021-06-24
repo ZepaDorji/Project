@@ -1,0 +1,53 @@
+<%= form_with(model: userprofile) do |form| %>
+  <% if userprofile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(userprofile.errors.count, "error") %> prohibited this userprofile from being saved:</h2>
+
+      <ul>
+        <% userprofile.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dob %>
+    <%= form.text_field :dob %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cid_no %>
+    <%= form.number_field :cid_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_no %>
+    <%= form.number_field :contact_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_area :address %>
+  </div>
+
+  <div class="field">
+    
+    <%= form.number_field :users_id,id: :userprofiles_user_path,
+    value: current_user.id,type: :hidden %>
+  </div>
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
