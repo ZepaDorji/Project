@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
+Ruby version -  2.7.3p183
+rails version - 6.1.32
 
-* System dependencies
 
-* Configuration
+Database table :
+user 
+categories
+orders
+productions
+sellers
 
-* Database creation
 
-* Database initialization
+ Database relationship 
+ sellers belongs to user
+ product belongs to categories
+ orders belongs to products
 
-* How to run the test suite
+ 
+admin is add to user tabel. By default admin = false
+for admin  set admin = true from rails console
 
-* Services (job queues, cache servers, search engines, etc.)
+admin can authorize the seller or user to add another seller 
+admin can create the product with images
 
-* Deployment instructions
 
-* ...
